@@ -1,10 +1,18 @@
 #!/usr/bin/python
 
 import argparse
+from typing import List
 
 
-def find_max_profit(prices):
-    pass
+def find_max_profit(prices: List[int]):
+    difference = prices[1] - prices[0]
+
+    for index in range(0, len(prices)):
+        def get_difference(compare: int): return compare - prices[index]
+        differences = map(get_difference, prices[index + 1:])
+        difference = max([*differences, difference])
+
+    return difference
 
 
 if __name__ == '__main__':
