@@ -6,9 +6,26 @@ import sys
 # a solution that is more efficient than the naive
 # recursive solution
 
+# input -> output
+# 0 -> 1
+# 1 -> 1
+# 2 -> 2
+# 3 -> 4
+# 4 -> 7
+# 5 -> 13
+# 10 -> 274
+# This is Tribonacci but starting at index of 1
+# 0 1 1 2 4 7 13 24 44 81 149 274
+# T(n) = T(n-1) + T(n-2) + T(n-3)
 
-def eating_cookies(n, cache=None):
-    pass
+
+def eating_cookies(n: int, cache=None):
+    sequence = [0, 1, 1]
+
+    for i in range(1, n):
+        sequence.append(sequence[i + 1] + sequence[i] + sequence[i - 1])
+
+    return sequence[-1]
 
 
 if __name__ == "__main__":
