@@ -5,14 +5,14 @@ from typing import List
 
 
 def find_max_profit(prices: List[int]):
-    difference = prices[1] - prices[0]
+    largest_difference = prices[1] - prices[0]
 
-    for index in range(0, len(prices)):
+    for index in range(1, len(prices)):
         def get_difference(compare: int): return compare - prices[index]
         differences = map(get_difference, prices[index + 1:])
-        difference = max([*differences, difference])
+        largest_difference = max([*differences, largest_difference])
 
-    return difference
+    return largest_difference
 
 
 if __name__ == '__main__':
