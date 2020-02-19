@@ -1,10 +1,20 @@
 #!/usr/bin/python
 
 import math
+from typing import Dict
 
 
-def recipe_batches(recipe, ingredients):
-    pass
+def recipe_batches(recipe: Dict[str, int], ingredients: Dict[str, int]):
+    batches_made = 0
+    while True:
+        for ingredient, number_required in recipe.items():
+
+            if ingredient not in ingredients or ingredients[ingredient] < number_required:
+                return batches_made
+
+            ingredients[ingredient] -= number_required
+
+        batches_made += 1
 
 
 if __name__ == '__main__':
