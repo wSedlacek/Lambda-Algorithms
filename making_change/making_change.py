@@ -3,10 +3,15 @@
 import sys
 from typing import List
 
+cache = {}
+
 
 def making_change(amount: int, denominations: List[int]):
     if (amount == 0 or len(denominations) <= 1):
         return 1
+
+    if f'{amount}-{denominations}' in cache:
+        return cache[f'{amount}-{denominations}']
 
     # There is always only one way with only pennies (with just pennies)
     total = 1
@@ -19,6 +24,7 @@ def making_change(amount: int, denominations: List[int]):
         total += making_change(amount_left, denominations[1:]) - 1
         total += 1
 
+    cache[f'{amount}-{denominations}'] = total
     return total
 
 
