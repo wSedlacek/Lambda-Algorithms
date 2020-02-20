@@ -1,10 +1,25 @@
 #!/usr/bin/python
 
 import sys
+from typing import List
 
 
-def making_change(amount, denominations):
-    pass
+def making_change(amount: int, denominations: List[int]):
+    if (amount == 0 or len(denominations) <= 1):
+        return 1
+
+    # There is always only one way with only pennies (with just pennies)
+    total = 1
+
+    # We will just count the ways that aren't pennies
+    denomination = denominations[1]
+    for variation in range(0, amount // denomination):
+        amount_left = amount - variation * denomination
+        # We subtract one since we don't want to count the pennies solution more then once
+        total += making_change(amount_left, denominations[1:]) - 1
+        total += 1
+
+    return total
 
 
 if __name__ == "__main__":
