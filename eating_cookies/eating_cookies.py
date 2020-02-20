@@ -22,8 +22,8 @@ import sys
 def eating_cookies(n: int, cache=None):
     sequence = [0, 1, 1]
 
-    for i in range(1, n):
-        sequence.append(sequence[i + 1] + sequence[i] + sequence[i - 1])
+    for i in range(3, n + 2):
+        sequence.append(sequence[i - 1] + sequence[i - 2] + sequence[i - 3])
 
     return sequence[-1]
 
